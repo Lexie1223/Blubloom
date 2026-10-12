@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,9 +17,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 读取WASD和方向键输入
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        float moveX = 0;
+        float moveY = 0;
+
+        // 左右：A/D + 左右方向键
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+            moveX -= 1;
+        if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            moveX += 1;
+
+        // 上下：W/S + 上下方向键
+        if (Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed)
+            moveY += 1;
+        if (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed)
+            moveY -= 1;
 
         // 归一化，斜着走速度不会变快
         moveInput = new Vector2(moveX, moveY).normalized;
