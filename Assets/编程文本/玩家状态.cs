@@ -34,7 +34,6 @@ public class PlayerStats : MonoBehaviour
         RefreshUI();
     }
 
-    // 从 GameManager 把数值同步到屏幕
     void RefreshUI()
     {
         if (GameManager.Instance != null && UIManager.Instance != null)
@@ -44,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 触发体：食物 / 有毒物
+    // 触发体：食物 / 有毒物（可穿过，吃掉消失）
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Food"))
@@ -63,15 +62,23 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 实体碰撞：危险障碍（挡+扣血+击退）；Blocker 只挡路，这里不写处理
+    // 实体碰撞：危险障碍(挡+扣血+击退) / 纯阻挡(只挡路)
     void OnCollisionEnter2D(Collision2D other)
     {
+        // 危险障碍 Obstacle：扣血 + 击退
         if (other.collider.CompareTag("Obstacle") && !_isInvincible)
         {
             TakeDamage();
             _rb.linearVelocity = Vector2.zero;
             Vector2 knockbackDir = other.contacts[0].normal;
             _rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+        }
+
+        // 纯阻挡 Blocker：只挡路，不扣血、不击退，这里什么都不做
+        // 物理碰撞本身已经把玩家挡住了，不需要写任何处理
+        if (other.collider.CompareTag("Blocker"))
+        {
+            // 留空：如需加贴墙音效、轻微摩擦等效果，以后写在这里
         }
     }
 
@@ -82,7 +89,6 @@ public class PlayerStats : MonoBehaviour
             StartCoroutine(EvolveRoutine());
     }
 
-    // 进化：停移动 → 无敌 → 播动画 → 切关
     IEnumerator EvolveRoutine()
     {
         _hasEvolved = true;
@@ -93,7 +99,6 @@ public class PlayerStats : MonoBehaviour
         if (_anim != null) _anim.Play(evolveAnimName);
         yield return new WaitForSeconds(evolveAnimLength);
 
-        // 最后一关：留空就重置整局
         if (string.IsNullOrEmpty(nextSceneName))
         {
             GameManager.Instance.RestartRun();
