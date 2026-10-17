@@ -1,48 +1,61 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("基础属性")]
-    public int maxHealth = 3;
-    public int currentHealth;
-    public int currentScore = 0;
+    [Header("吃一个食物加的分")]
+    public int scorePerFood = 10;
 
-    [Header("无敌帧设置")]
+    [Header("无敌帧时长")]
     public float invincibilityTime = 1.5f;
-    private bool _isInvincible;
 
-    [Header("障碍物击退力度")]
+    [Header("危险障碍击退力度（Obstacle）")]
     public float knockbackForce = 8f;
 
+    [Header("下一关场景名；最后一关留空字符串")]
+    public string nextSceneName = "Level2";
+
+    [Header("进化动画名 / 时长（秒）")]
+    public string evolveAnimName = "Cell_Evolve";
+    public float evolveAnimLength = 1.5f;
+
+    private bool _isInvincible;
+    private bool _hasEvolved;
     private Rigidbody2D _rb;
+    private Animator _anim;
+    private PlayerMovement _movement;
 
     void Start()
     {
-        currentHealth = maxHealth;
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponentInChildren<Animator>();
+        _movement = GetComponent<PlayerMovement>();
+        RefreshUI();
+    }
 
-        // 自动同步UI初始值
-        if (UIManager.Instance != null)
+    // 从 GameManager 把数值同步到屏幕
+    void RefreshUI()
+    {
+        if (GameManager.Instance != null && UIManager.Instance != null)
         {
-            UIManager.Instance.RefreshScore(currentScore);
-            UIManager.Instance.RefreshHealth(currentHealth);
+            UIManager.Instance.RefreshScore(GameManager.Instance.CurrentScore);
+            UIManager.Instance.RefreshHealth(GameManager.Instance.CurrentHealth);
         }
     }
 
-    // 触发类物体：食物、有毒物质（可穿过、吃掉消失）
+    // 触发体：食物 / 有毒物
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 吃到食物：加分 + 销毁物体
         if (other.CompareTag("Food"))
         {
-            currentScore += 10;
-            if (UIManager.Instance != null)
-                UIManager.Instance.RefreshScore(currentScore);
+            if (GameManager.Instance != null)
+                GameManager.Instance.AddScore(scorePerFood);
+            RefreshUI();
             Destroy(other.gameObject);
+            CheckEvolve();
         }
 
-        // 吃到有毒物质：扣血 + 销毁物体（吃掉消失）
         if (other.CompareTag("Hazard") && !_isInvincible)
         {
             TakeDamage();
@@ -50,38 +63,58 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 实体碰撞：障碍物（挡路 + 击退 + 扣血）
+    // 实体碰撞：危险障碍（挡+扣血+击退）；Blocker 只挡路，这里不写处理
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.CompareTag("Obstacle") && !_isInvincible)
         {
             TakeDamage();
-
-            // 先清空当前速度，保证击退力度稳定
             _rb.linearVelocity = Vector2.zero;
-            // 沿碰撞面法线方向弹开
             Vector2 knockbackDir = other.contacts[0].normal;
             _rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
-    // 扣血统一逻辑
-    void TakeDamage()
+    void CheckEvolve()
     {
-        currentHealth--;
+        if (_hasEvolved || GameManager.Instance == null) return;
+        if (GameManager.Instance.CurrentScore >= GameManager.Instance.GetEvolveScore())
+            StartCoroutine(EvolveRoutine());
+    }
+
+    // 进化：停移动 → 无敌 → 播动画 → 切关
+    IEnumerator EvolveRoutine()
+    {
+        _hasEvolved = true;
+        if (_movement != null) _movement.enabled = false;
+        _rb.linearVelocity = Vector2.zero;
         _isInvincible = true;
 
-        if (UIManager.Instance != null)
-            UIManager.Instance.RefreshHealth(currentHealth);
+        if (_anim != null) _anim.Play(evolveAnimName);
+        yield return new WaitForSeconds(evolveAnimLength);
 
-        // 无敌时间结束后恢复
+        // 最后一关：留空就重置整局
+        if (string.IsNullOrEmpty(nextSceneName))
+        {
+            GameManager.Instance.RestartRun();
+            yield break;
+        }
+
+        GameManager.Instance.AdvanceStage();
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    void TakeDamage()
+    {
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.Damage();
+        _isInvincible = true;
+        RefreshUI();
+
         Invoke(nameof(EndInvincible), invincibilityTime);
 
-        // 血量归零重置当前关卡
-        if (currentHealth <= 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        if (GameManager.Instance.CurrentHealth <= 0)
+            GameManager.Instance.RestartRun();
     }
 
     void EndInvincible()
