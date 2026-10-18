@@ -256,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 220}
+  m_AnchoredPosition: {x: 41, y: 216}
   m_SizeDelta: {x: 900, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931296620
@@ -279,9 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'From One Cell to Many
-
-'
+  m_text: "From One Cell to Many Level1\u2014\u2014Level2\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -734,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 0}
+  m_AnchoredPosition: {x: 44, y: -149}
   m_SizeDelta: {x: 950, y: 520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814784794
@@ -759,24 +757,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'The Ocean: Where Life Began
 
-    
 
-    Billions of years ago, Earth''s
-    oceans were home to some of the earliest forms of life. For a long time, life
-    existed mainly as single-celled organisms.
 
-    
+    Billions of years ago, Earth''s oceans
+    were home to some of the earliest forms of life. For a long time, life existed
+    mainly as single-celled organisms.
 
-    Over time, some cells
-    began living and working together, eventually forming multicellular organisms.
-    Evidence of multicellular life dates back at least 1.6 billion years. This cooperation
-    allowed life to become larger and more complex.
 
-    
 
-    From a single cell
-    to countless forms of life, the ocean has been part of this journey from the
-    very beginning.
+    Over time, some cells began living
+    and working together, eventually forming multicellular organisms. Evidence of
+    multicellular life dates back at least 1.6 billion years. This cooperation allowed
+    life to become larger and more complex.
+
+
+
+    From a single cell to countless
+    forms of life, the ocean has been part of this journey from the very beginning.
 
 '
   m_isRightToLeft: 0
@@ -805,7 +802,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34.85
+  m_fontSize: 28.4
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
