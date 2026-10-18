@@ -1,0 +1,702 @@
+fileFormatVersion: 2
+guid: 1c299b2819b0f804bb21d7cec5600e6a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 316793284333161908
+    second: 04_algae_sprout_0
+  - first:
+      213: 4798570868865363740
+    second: 04_algae_sprout_1
+  - first:
+      213: 5160446442212247338
+    second: 04_algae_sprout_2
+  - first:
+      213: 3350095282558167959
+    second: 04_algae_sprout_3
+  - first:
+      213: -5938009947841785123
+    second: 04_algae_sprout_4
+  - first:
+      213: 7951951658567847361
+    second: 04_algae_sprout_5
+  - first:
+      213: 6047749859327075370
+    second: 04_algae_sprout_6
+  - first:
+      213: 9157991922892352584
+    second: 04_algae_sprout_7
+  - first:
+      213: -2038586530022649054
+    second: 04_algae_sprout_8
+  - first:
+      213: -4658096584124739720
+    second: 04_algae_sprout_9
+  - first:
+      213: 4662836233987841794
+    second: 04_algae_sprout_10
+  - first:
+      213: -8049434677763821686
+    second: 04_algae_sprout_11
+  - first:
+      213: -437953152348093927
+    second: 04_algae_sprout_12
+  - first:
+      213: 3981091733117099396
+    second: 04_algae_sprout_13
+  - first:
+      213: -5077618567637276260
+    second: 04_algae_sprout_14
+  - first:
+      213: -6168998635714730066
+    second: 04_algae_sprout_15
+  - first:
+      213: 5103316775995530817
+    second: 04_algae_sprout_16
+  - first:
+      213: -3218037073002833622
+    second: 04_algae_sprout_17
+  - first:
+      213: -5628493621135240554
+    second: 04_algae_sprout_18
+  - first:
+      213: -7945585958363978202
+    second: 04_algae_sprout_19
+  - first:
+      213: 6315010094123383217
+    second: 04_algae_sprout_20
+  - first:
+      213: 443391396204960030
+    second: 04_algae_sprout_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 04_algae_sprout_0
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 980
+        width: 92
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd48eb40d9756400800000000000000
+      internalID: 316793284333161908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_1
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 24
+        width: 1040
+        height: 1184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1fe14408c2f79240800000000000000
+      internalID: 4798570868865363740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_2
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 1093
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a274d7ea2b69d9740800000000000000
+      internalID: 5160446442212247338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_3
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1075
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79b6790f8eded7e20800000000000000
+      internalID: 3350095282558167959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_4
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1022
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd29722d963f79da0800000000000000
+      internalID: -5938009947841785123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_5
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 994
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cdc308f6e10b5e60800000000000000
+      internalID: 7951951658567847361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_6
+      rect:
+        serializedVersion: 2
+        x: 722
+        y: 1002
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24eb97647cede350800000000000000
+      internalID: 6047749859327075370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 841
+        width: 86
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84c25ebf129b71f70800000000000000
+      internalID: 9157991922892352584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_8
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 968
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2239a121a5c75b3e0800000000000000
+      internalID: -2038586530022649054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 966
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fc8cd16dd1b5fb0800000000000000
+      internalID: -4658096584124739720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_10
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 765
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f5aac99d8b5b040800000000000000
+      internalID: 4662836233987841794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_11
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 761
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f2d2deec9aa4090800000000000000
+      internalID: -8049434677763821686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 649
+        width: 45
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9128706ade31ce9f0800000000000000
+      internalID: -437953152348093927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_13
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 677
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d50baa6ddaf3730800000000000000
+      internalID: 3981091733117099396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_14
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 551
+        width: 58
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c996d0ba0dca889b0800000000000000
+      internalID: -5077618567637276260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_15
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 529
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea7aa52fc60536aa0800000000000000
+      internalID: -6168998635714730066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_16
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 57
+        width: 174
+        height: 441
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e5189b19f92d640800000000000000
+      internalID: 5103316775995530817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_17
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 473
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a29d0adf45c3753d0800000000000000
+      internalID: -3218037073002833622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_18
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 126
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6929ea36fd293e1b0800000000000000
+      internalID: -5628493621135240554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_19
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 256
+        width: 77
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626226b1bab9bb190800000000000000
+      internalID: -7945585958363978202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_20
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 422
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b9fa35e83c63a750800000000000000
+      internalID: 6315010094123383217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 04_algae_sprout_21
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 448
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e19d24b202e372600800000000000000
+      internalID: 443391396204960030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      04_algae_sprout_0: 316793284333161908
+      04_algae_sprout_1: 4798570868865363740
+      04_algae_sprout_10: 4662836233987841794
+      04_algae_sprout_11: -8049434677763821686
+      04_algae_sprout_12: -437953152348093927
+      04_algae_sprout_13: 3981091733117099396
+      04_algae_sprout_14: -5077618567637276260
+      04_algae_sprout_15: -6168998635714730066
+      04_algae_sprout_16: 5103316775995530817
+      04_algae_sprout_17: -3218037073002833622
+      04_algae_sprout_18: -5628493621135240554
+      04_algae_sprout_19: -7945585958363978202
+      04_algae_sprout_2: 5160446442212247338
+      04_algae_sprout_20: 6315010094123383217
+      04_algae_sprout_21: 443391396204960030
+      04_algae_sprout_3: 3350095282558167959
+      04_algae_sprout_4: -5938009947841785123
+      04_algae_sprout_5: 7951951658567847361
+      04_algae_sprout_6: 6047749859327075370
+      04_algae_sprout_7: 9157991922892352584
+      04_algae_sprout_8: -2038586530022649054
+      04_algae_sprout_9: -4658096584124739720
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

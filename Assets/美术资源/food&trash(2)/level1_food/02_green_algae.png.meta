@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 644f8060af1d29d4b94bd7895354a978
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5020868836480009212
+    second: 02_green_algae_0
+  - first:
+      213: -4983262983496025070
+    second: 02_green_algae_1
+  - first:
+      213: -5642678403758050886
+    second: 02_green_algae_2
+  - first:
+      213: 4472011330130105670
+    second: 02_green_algae_3
+  - first:
+      213: -4189709678284307491
+    second: 02_green_algae_4
+  - first:
+      213: -5735889185339713864
+    second: 02_green_algae_5
+  - first:
+      213: -3963544179465408472
+    second: 02_green_algae_6
+  - first:
+      213: -9016953593308176286
+    second: 02_green_algae_7
+  - first:
+      213: -2067052427770532771
+    second: 02_green_algae_8
+  - first:
+      213: -7995680590744013091
+    second: 02_green_algae_9
+  - first:
+      213: -8698490049099035681
+    second: 02_green_algae_10
+  - first:
+      213: -6916721873590002334
+    second: 02_green_algae_11
+  - first:
+      213: 4756420489604862912
+    second: 02_green_algae_12
+  - first:
+      213: -7696881457238424857
+    second: 02_green_algae_13
+  - first:
+      213: -4242625651563668975
+    second: 02_green_algae_14
+  - first:
+      213: -2552251169284010731
+    second: 02_green_algae_15
+  - first:
+      213: -6732059024671228378
+    second: 02_green_algae_16
+  - first:
+      213: 6639067478834231142
+    second: 02_green_algae_17
+  - first:
+      213: -5415999478065483432
+    second: 02_green_algae_18
+  - first:
+      213: 5425128617400419035
+    second: 02_green_algae_19
+  - first:
+      213: -5795223384836342994
+    second: 02_green_algae_20
+  - first:
+      213: 5262815271408328936
+    second: 02_green_algae_21
+  - first:
+      213: -680238624833875018
+    second: 02_green_algae_22
+  - first:
+      213: -4812107537341654696
+    second: 02_green_algae_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 02_green_algae_0
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 1096
+        width: 137
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cb7c9156a425ab0800000000000000
+      internalID: -5020868836480009212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_1
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 1118
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21cbd5e08b4e7dab0800000000000000
+      internalID: -4983262983496025070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_2
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 1080
+        width: 61
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab1bb3253ed21b1b0800000000000000
+      internalID: -5642678403758050886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 1027
+        height: 1085
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6455deb6c96cf0e30800000000000000
+      internalID: 4472011330130105670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_4
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 1071
+        width: 63
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd309d1ee392bd5c0800000000000000
+      internalID: -4189709678284307491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_5
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 874
+        width: 333
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b652dc0d270660b0800000000000000
+      internalID: -5735889185339713864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_6
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1031
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820b56b8199aef8c0800000000000000
+      internalID: -3963544179465408472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_7
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 918
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2602fa21b785dd280800000000000000
+      internalID: -9016953593308176286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_8
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 777
+        width: 26
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ce0a6c4ca5053e0800000000000000
+      internalID: -2067052427770532771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_9
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 773
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6b73b9dd2a90190800000000000000
+      internalID: -7995680590744013091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_10
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 182
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb8e2d0361c84780800000000000000
+      internalID: -8698490049099035681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_11
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 196
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26d5e723a1ed200a0800000000000000
+      internalID: -6916721873590002334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_12
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 146
+        width: 218
+        height: 614
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c399451c33320240800000000000000
+      internalID: 4756420489604862912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_13
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 80
+        width: 64
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2430f281f2f2590800000000000000
+      internalID: -7696881457238424857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_14
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 88
+        width: 36
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a5693c27a2f15c0800000000000000
+      internalID: -4242625651563668975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 34
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d404d7515949cd0800000000000000
+      internalID: -2552251169284010731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_16
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 31
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e328b2cfbe292a0800000000000000
+      internalID: -6732059024671228378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_17
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 32
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66733cb52b4b22c50800000000000000
+      internalID: 6639067478834231142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_18
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 31
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851b43e7b2186d4b0800000000000000
+      internalID: -5415999478065483432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_19
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 37
+        width: 19
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd245f4ebbde94b40800000000000000
+      internalID: 5425128617400419035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_20
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 62
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2bfac0390b339fa0800000000000000
+      internalID: -5795223384836342994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_21
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 64
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e06bc21b96490940800000000000000
+      internalID: 5262815271408328936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_22
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 29
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b3d644239e4f86f0800000000000000
+      internalID: -680238624833875018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 02_green_algae_23
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 25
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85955cfb0b5f73db0800000000000000
+      internalID: -4812107537341654696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      02_green_algae_0: -5020868836480009212
+      02_green_algae_1: -4983262983496025070
+      02_green_algae_10: -8698490049099035681
+      02_green_algae_11: -6916721873590002334
+      02_green_algae_12: 4756420489604862912
+      02_green_algae_13: -7696881457238424857
+      02_green_algae_14: -4242625651563668975
+      02_green_algae_15: -2552251169284010731
+      02_green_algae_16: -6732059024671228378
+      02_green_algae_17: 6639067478834231142
+      02_green_algae_18: -5415999478065483432
+      02_green_algae_19: 5425128617400419035
+      02_green_algae_2: -5642678403758050886
+      02_green_algae_20: -5795223384836342994
+      02_green_algae_21: 5262815271408328936
+      02_green_algae_22: -680238624833875018
+      02_green_algae_23: -4812107537341654696
+      02_green_algae_3: 4472011330130105670
+      02_green_algae_4: -4189709678284307491
+      02_green_algae_5: -5735889185339713864
+      02_green_algae_6: -3963544179465408472
+      02_green_algae_7: -9016953593308176286
+      02_green_algae_8: -2067052427770532771
+      02_green_algae_9: -7995680590744013091
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
