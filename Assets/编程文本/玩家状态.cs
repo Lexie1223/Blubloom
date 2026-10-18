@@ -10,13 +10,16 @@ public class PlayerStats : MonoBehaviour
     [Header("无敌帧时长")]
     public float invincibilityTime = 1.5f;
 
-    [Header("危险障碍击退力度（Obstacle）")]
+    [Header("危险障碍击退力度")]
     public float knockbackForce = 8f;
 
-    [Header("下一关场景名；最后一关留空字符串")]
+    [Header("进化后先去的过场场景，留空则直接进下一关")]
+    public string cutsceneName = "Story1";
+
+    [Header("最终下一关场景名")]
     public string nextSceneName = "Level2";
 
-    [Header("进化动画名 / 时长（秒）")]
+    [Header("进化动画名 / 时长")]
     public string evolveAnimName = "Cell_Evolve";
     public float evolveAnimLength = 1.5f;
 
@@ -43,7 +46,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 触发体：食物 / 有毒物（可穿过，吃掉消失）
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Food"))
@@ -62,23 +64,14 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 实体碰撞：危险障碍(挡+扣血+击退) / 纯阻挡(只挡路)
     void OnCollisionEnter2D(Collision2D other)
     {
-        // 危险障碍 Obstacle：扣血 + 击退
         if (other.collider.CompareTag("Obstacle") && !_isInvincible)
         {
             TakeDamage();
             _rb.linearVelocity = Vector2.zero;
-            Vector2 knockbackDir = other.contacts[0].normal;
-            _rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-        }
-
-        // 纯阻挡 Blocker：只挡路，不扣血、不击退，这里什么都不做
-        // 物理碰撞本身已经把玩家挡住了，不需要写任何处理
-        if (other.collider.CompareTag("Blocker"))
-        {
-            // 留空：如需加贴墙音效、轻微摩擦等效果，以后写在这里
+            Vector2 dir = other.contacts[0].normal;
+            _rb.AddForce(dir * knockbackForce, ForceMode2D.Impulse);
         }
     }
 
@@ -99,14 +92,22 @@ public class PlayerStats : MonoBehaviour
         if (_anim != null) _anim.Play(evolveAnimName);
         yield return new WaitForSeconds(evolveAnimLength);
 
-        if (string.IsNullOrEmpty(nextSceneName))
+        if (GameManager.Instance != null)
+            GameManager.Instance.AdvanceStage();
+
+        // 关键分支：有过场先去 Story1，没有再直接 Level2
+        if (!string.IsNullOrEmpty(cutsceneName))
+        {
+            SceneManager.LoadScene(cutsceneName);
+        }
+        else if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
         {
             GameManager.Instance.RestartRun();
-            yield break;
         }
-
-        GameManager.Instance.AdvanceStage();
-        SceneManager.LoadScene(nextSceneName);
     }
 
     void TakeDamage()
@@ -115,15 +116,10 @@ public class PlayerStats : MonoBehaviour
         GameManager.Instance.Damage();
         _isInvincible = true;
         RefreshUI();
-
         Invoke(nameof(EndInvincible), invincibilityTime);
-
         if (GameManager.Instance.CurrentHealth <= 0)
             GameManager.Instance.RestartRun();
     }
 
-    void EndInvincible()
-    {
-        _isInvincible = false;
-    }
+    void EndInvincible() => _isInvincible = false;
 }
