@@ -76,19 +76,12 @@ public class HomeManager : MonoBehaviour
             }
         }
 
-        vp.playOnAwake = false;
+        vp.playOnAwake = true;
         vp.isLooping = true;
         vp.renderMode = VideoRenderMode.RenderTexture;
         vp.targetTexture = renderTex;
-        // 先关视频自带音轨，避免 AudioSampleProvider buffer overflow
         vp.audioOutputMode = VideoAudioOutputMode.None;
-
-        // 只出第一帧不动，是因为没 Prepare；准备好再播
-        vp.prepareCompleted += source =>
-        {
-            source.Play();
-        };
-        vp.Prepare();
+        vp.Play();
     }
 
     private void SetupStartButton()
