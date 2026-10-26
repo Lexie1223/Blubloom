@@ -31,9 +31,14 @@ public class HomeManager : MonoBehaviour
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
-        GameObject rawGo = new GameObject("HomeVideoRawImage", typeof(RectTransform), typeof(RawImage));
-        rawGo.transform.SetParent(canvas.transform, false);
-        rawGo.transform.SetAsFirstSibling();
+        // 复用已有 RawImage，避免重复建
+        GameObject rawGo = GameObject.Find("HomeVideoRawImage");
+        if (rawGo == null)
+        {
+            rawGo = new GameObject("HomeVideoRawImage", typeof(RectTransform), typeof(RawImage));
+            rawGo.transform.SetParent(canvas.transform, false);
+            rawGo.transform.SetAsFirstSibling();
+        }
 
         RectTransform rt = (RectTransform)rawGo.transform;
         rt.anchorMin = Vector2.zero;
@@ -52,28 +57,38 @@ public class HomeManager : MonoBehaviour
         VideoPlayer vp = videoGo.GetComponent<VideoPlayer>();
         if (vp == null) vp = videoGo.AddComponent<VideoPlayer>();
 
-        // 编辑器里直接读原 mp4 路径，最稳；Resources 加载经常不认
-        string videoPath = System.IO.Path.Combine(
-            Application.dataPath,
-            "美术资源/背景/404D258C-5705-4801-9A6D-4311511430EC.mp4");
-
-        if (System.IO.File.Exists(videoPath))
+        // 如果你已经在 VideoPlayer 上挂了视频，就尊重你挂的，不乱换
+        if (vp.clip == null)
         {
-            vp.source = VideoSource.Url;
-            vp.url = videoPath;
-        }
-        else
-        {
-            vp.source = VideoSource.VideoClip;
-            vp.clip = Resources.Load<VideoClip>("Videos/home");
+            string videoPath = System.IO.Path.Combine(
+                Application.dataPath,
+                "美术资源/背景/404D258C-5705-4801-9A6D-4311511430EC.mp4");
+
+            if (System.IO.File.Exists(videoPath))
+            {
+                vp.source = VideoSource.Url;
+                vp.url = videoPath;
+            }
+            else
+            {
+                vp.source = VideoSource.VideoClip;
+                vp.clip = Resources.Load<VideoClip>("Videos/home");
+            }
         }
 
-        vp.playOnAwake = true;
+        vp.playOnAwake = false;
         vp.isLooping = true;
         vp.renderMode = VideoRenderMode.RenderTexture;
         vp.targetTexture = renderTex;
-        vp.audioOutputMode = VideoAudioOutputMode.Direct;
-        vp.Play();
+        // 先关视频自带音轨，避免 AudioSampleProvider buffer overflow
+        vp.audioOutputMode = VideoAudioOutputMode.None;
+
+        // 只出第一帧不动，是因为没 Prepare；准备好再播
+        vp.prepareCompleted += source =>
+        {
+            source.Play();
+        };
+        vp.Prepare();
     }
 
     private void SetupStartButton()
