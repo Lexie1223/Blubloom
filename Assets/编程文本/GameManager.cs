@@ -26,6 +26,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         CurrentHealth = startHealth;
+
+        // 自动生成全局音频和暂停菜单
+        AudioManager.Ensure();
+        if (PauseManager.Instance == null)
+        {
+            GameObject pauseGo = new GameObject("PauseManager");
+            pauseGo.AddComponent<PauseManager>();
+        }
     }
 
     public void AddScore(int amount)

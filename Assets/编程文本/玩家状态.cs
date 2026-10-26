@@ -52,6 +52,7 @@ public class PlayerStats : MonoBehaviour
         {
             if (GameManager.Instance != null)
                 GameManager.Instance.AddScore(scorePerFood);
+            AudioManager.Instance?.PlayEat();
             RefreshUI();
             Destroy(other.gameObject);
             CheckEvolve();
@@ -114,6 +115,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
         GameManager.Instance.Damage();
+        AudioManager.Instance?.PlayImpact();
         _isInvincible = true;
         RefreshUI();
         Invoke(nameof(EndInvincible), invincibilityTime);
