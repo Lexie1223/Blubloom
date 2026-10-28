@@ -70,6 +70,14 @@ public class AudioManager : MonoBehaviour
     public void SfxUp() { sfxVolume = Mathf.Min(10, sfxVolume + 1); ApplyVolumes(); PlayClick(); }
     public void SfxDown() { sfxVolume = Mathf.Max(0, sfxVolume - 1); ApplyVolumes(); PlayClick(); }
 
+    // 滑动条直接设置音量（0-10）
+    public void SetBgmVolume(int v) { bgmVolume = Mathf.Clamp(v, 0, 10); ApplyVolumes(); }
+    public void SetSfxVolume(int v) { sfxVolume = Mathf.Clamp(v, 0, 10); ApplyVolumes(); }
+
+    // 给滑动条用的 0~1 音量值
+    public float GetBgmVolume01() => bgmVolume / 10f;
+    public float GetSfxVolume01() => sfxVolume / 10f;
+
     public string GetBgmText() => bgmVolume.ToString();
     public string GetSfxText() => sfxVolume.ToString();
 

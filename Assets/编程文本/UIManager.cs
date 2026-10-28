@@ -6,9 +6,9 @@ public class UIManager : MonoBehaviour
     // 全局单例，其他脚本自动调用
     public static UIManager Instance;
 
-    [Header("UI文本组件：把对应物体拖进来")]
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI healthText;
+    [Header("HUD 数值文本：拖图片旁边显示数字的 TMP 文本")]
+    public TextMeshProUGUI healthValueText;
+    public TextMeshProUGUI scoreValueText;
 
     void Awake()
     {
@@ -22,15 +22,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // 更新分数显示
+    // 更新分数显示（图片标牌旁边只写数字）
     public void RefreshScore(int score)
     {
-        scoreText.text = "Score: " + score;
+        if (scoreValueText != null) scoreValueText.text = score.ToString();
     }
 
-    // 更新血量显示
+    // 更新血量显示（图片标牌旁边只写数字）
     public void RefreshHealth(int health)
     {
-        healthText.text = "Health: " + health;
+        if (healthValueText != null) healthValueText.text = health.ToString();
     }
 }

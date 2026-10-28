@@ -65,12 +65,12 @@ public static class UISetupMenu
         }
 
         CreateButton(panel.transform, "ResumeButton", "resume",
-            new Vector2(0.5f, 0.5f), new Vector2(0, 110), new Vector2(280, 90));
+            new Vector2(0.5f, 0.5f), new Vector2(0, 160), new Vector2(400, 130));
         CreateButton(panel.transform, "QuitButton", "exit",
-            new Vector2(0.5f, 0.5f), new Vector2(0, 0), new Vector2(280, 90));
+            new Vector2(0.5f, 0.5f), new Vector2(0, 20), new Vector2(400, 130));
 
-        CreateVolumeRow(panel.transform, "BGMRow", "music", new Vector2(0, -90));
-        CreateVolumeRow(panel.transform, "SFXRow", "sound", new Vector2(0, -160));
+        CreateSliderVolumeRow(panel.transform, "BGMRow", "music", new Vector2(0, -130), "背景音乐");
+        CreateSliderVolumeRow(panel.transform, "SFXRow", "sound", new Vector2(0, -240), "音效");
     }
 
     private static void CreateHomeVolumePanel(Transform parent)
@@ -108,6 +108,79 @@ public static class UISetupMenu
         CreateText(row.transform, "Value", "8", new Vector2(0.5f, 0.5f), new Vector2(20, 0), new Vector2(60, 45));
         CreateButton(row.transform, "Plus", "",
             new Vector2(0.5f, 0.5f), new Vector2(80, 0), new Vector2(55, 45));
+    }
+
+    // 新版音量行：图标 + 文字标注 + Slider 滑动条（暂停面板用）
+    private static void CreateSliderVolumeRow(Transform parent, string rowName, string iconName,
+        Vector2 pos, string label)
+    {
+        if (FindExisting(rowName) != null) return;
+
+        GameObject row = new GameObject(rowName, typeof(RectTransform));
+        row.transform.SetParent(parent, false);
+        RectTransform rowRt = (RectTransform)row.transform;
+        rowRt.anchoredPosition = pos;
+        rowRt.sizeDelta = new Vector2(560, 60);
+
+        CreateImage(row.transform, "Icon", iconName,
+            new Vector2(0.5f, 0.5f), new Vector2(-230, 0), new Vector2(64, 64));
+
+        // 文字标注
+        GameObject labelGo = new GameObject("Label", typeof(RectTransform), typeof(Text));
+        labelGo.transform.SetParent(row.transform, false);
+        RectTransform lrt = (RectTransform)labelGo.transform;
+        lrt.anchoredPosition = new Vector2(-120, 0);
+        lrt.sizeDelta = new Vector2(130, 44);
+        Text lt = labelGo.GetComponent<Text>();
+        lt.text = label;
+        lt.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        lt.fontSize = 26;
+        lt.alignment = TextAnchor.MiddleLeft;
+        lt.color = Color.white;
+
+        // Slider 本体
+        GameObject sliderGo = new GameObject("Slider", typeof(RectTransform), typeof(Slider));
+        sliderGo.transform.SetParent(row.transform, false);
+        RectTransform srt = (RectTransform)sliderGo.transform;
+        srt.anchoredPosition = new Vector2(40, 0);
+        srt.sizeDelta = new Vector2(320, 44);
+
+        // 轨道背景
+        GameObject bgGo = new GameObject("Background", typeof(RectTransform), typeof(Image));
+        bgGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform bgRt = (RectTransform)bgGo.transform;
+        bgRt.anchorMin = new Vector2(0, 0.25f);
+        bgRt.anchorMax = new Vector2(1, 0.75f);
+        bgRt.offsetMin = Vector2.zero;
+        bgRt.offsetMax = Vector2.zero;
+        bgGo.GetComponent<Image>().color = new Color(0.2f, 0.3f, 0.45f, 1f);
+
+        // 填充
+        GameObject fillGo = new GameObject("Fill", typeof(RectTransform), typeof(Image));
+        fillGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform fillRt = (RectTransform)fillGo.transform;
+        fillRt.anchorMin = new Vector2(0, 0);
+        fillRt.anchorMax = new Vector2(1, 1);
+        fillRt.offsetMin = new Vector2(6, 0);
+        fillRt.offsetMax = new Vector2(-6, 0);
+        fillGo.GetComponent<Image>().color = new Color(0.2f, 0.7f, 1f, 1f);
+
+        // 手柄
+        GameObject handleGo = new GameObject("Handle", typeof(RectTransform), typeof(Image));
+        handleGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform hrt = (RectTransform)handleGo.transform;
+        hrt.sizeDelta = new Vector2(40, 40);
+        handleGo.GetComponent<Image>().color = Color.white;
+
+        Slider slider = sliderGo.GetComponent<Slider>();
+        slider.minValue = 0;
+        slider.maxValue = 10;
+        slider.wholeNumbers = true;
+        slider.value = 8;
+        slider.targetGraphic = handleGo.GetComponent<Image>();
+        slider.fillRect = fillRt;
+        slider.handleRect = hrt;
+        slider.direction = Slider.Direction.LeftToRight;
     }
 
     private static GameObject FindExisting(string name)

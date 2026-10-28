@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-// 全局暂停菜单管理器：跨场景存在，负责右上角暂停按钮、暂停面板、音量加减
+// 全局暂停菜单管理器：跨场景存在，负责右上角暂停按钮、暂停面板、音量滑动条
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance;
@@ -19,15 +19,17 @@ public class PauseManager : MonoBehaviour
     public float pauseButtonOffset = 75f;
 
     [Header("Resume / Exit 按钮大小，被拉伸就改这里")]
-    public Vector2 resumeButtonSize = new Vector2(280f, 90f);
-    public Vector2 quitButtonSize = new Vector2(280f, 90f);
+    public Vector2 resumeButtonSize = new Vector2(400f, 130f);
+    public Vector2 quitButtonSize = new Vector2(400f, 130f);
+
+    [Header("音量滑动条宽度")]
+    public float volumeSliderWidth = 320f;
 
     private bool _paused;
     private GameObject _pausePanel;
     private Button _pauseButton;
-
-    private Text _bgmValueText;
-    private Text _sfxValueText;
+    private Slider _bgmSlider;
+    private Slider _sfxSlider;
 
     // 单例 + 跨场景保留，防止切场景后暂停菜单消失
     void Awake()
@@ -84,18 +86,18 @@ public class PauseManager : MonoBehaviour
         _pausePanel.SetActive(false);
 
         // 接线 Resume 按钮
-        Button resume = FindOrCreateChildButton("ResumeButton", "resume", new Vector2(0, 110));
+        Button resume = FindOrCreateChildButton("ResumeButton", "resume", new Vector2(0, 160));
         resume.onClick.RemoveListener(Resume);
         resume.onClick.AddListener(Resume);
         ClearButtonText(resume);
 
         // 接线 Quit to Home 按钮
-        Button quit = FindOrCreateChildButton("QuitButton", "exit", new Vector2(0, 0));
+        Button quit = FindOrCreateChildButton("QuitButton", "exit", new Vector2(0, 20));
         quit.onClick.RemoveListener(QuitToHome);
         quit.onClick.AddListener(QuitToHome);
         ClearButtonText(quit);
 
-        // 创建 BGM / SFX 加减音量行
+        // 创建 BGM / SFX 音量滑动条行
         EnsureVolumeRows();
 
         // 确保右上角暂停按钮存在，再按场景决定显隐
@@ -142,166 +144,158 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    // 创建/找回 BGM 和 SFX 两行音量控制
+    // 创建/找回 BGM 和 SFX 两行音量滑动条
     private void EnsureVolumeRows()
     {
-        Transform row = _pausePanel.transform.Find("BGMRow");
-        if (row == null)
-        {
-            CreateVolumeRow("BGMRow", "music", -90,
-                () => AudioManager.Instance?.BgmDown(),
-                () => AudioManager.Instance?.BgmUp(),
-                out _bgmValueText);
-        }
-        else
-        {
-            _bgmValueText = row.Find("Value")?.GetComponent<Text>();
-            WireExistingVolumeRow(row, true);
-        }
-
-        row = _pausePanel.transform.Find("SFXRow");
-        if (row == null)
-        {
-            CreateVolumeRow("SFXRow", "sound", -160,
-                () => AudioManager.Instance?.SfxDown(),
-                () => AudioManager.Instance?.SfxUp(),
-                out _sfxValueText);
-        }
-        else
-        {
-            _sfxValueText = row.Find("Value")?.GetComponent<Text>();
-            WireExistingVolumeRow(row, false);
-        }
-
-        RefreshVolumeLabels();
+        _bgmSlider = EnsureVolumeRow("BGMRow", "music", -130, true, "背景音乐");
+        _sfxSlider = EnsureVolumeRow("SFXRow", "sound", -240, false, "音效");
+        RefreshSliders();
     }
 
-    // 生成一行：music/sound 图标 + [-] + 数字 + [+]
-    private void CreateVolumeRow(string rowName, string iconName, float y,
-        System.Action minus, System.Action plus, out Text valueText)
+    // 确保某一行是 [图标 + 文字标注 + 滑动条] 结构；旧版 [- 数字 +] 结构会被自动替换
+    private Slider EnsureVolumeRow(string rowName, string iconName, float y, bool isBgm, string label)
+    {
+        Transform row = _pausePanel.transform.Find(rowName);
+        if (row == null)
+        {
+            row = CreateVolumeRow(rowName, iconName, y, isBgm, label);
+        }
+        else
+        {
+            row.SetAsLastSibling();
+            // 保留的 Icon 重新摆到最左边，避免和文字/滑条重叠
+            Transform icon = row.Find("Icon");
+            if (icon != null)
+            {
+                RectTransform irt = (RectTransform)icon;
+                irt.anchoredPosition = new Vector2(-230, 0);
+                irt.sizeDelta = new Vector2(64, 64);
+            }
+            Slider slider = row.Find("Slider")?.GetComponent<Slider>();
+            if (slider == null)
+            {
+                // 旧结构（Minus / Plus / Value）直接清掉重建
+                for (int i = row.childCount - 1; i >= 0; i--)
+                {
+                    Transform child = row.GetChild(i);
+                    if (child.name != "Icon") Destroy(child.gameObject);
+                }
+                slider = BuildVolumeSlider(row, isBgm, label);
+            }
+            else
+            {
+                WireSlider(slider, isBgm);
+            }
+        }
+        return row.Find("Slider")?.GetComponent<Slider>();
+    }
+
+    // 新建一行：Icon + 文字标注 + Slider
+    private Transform CreateVolumeRow(string rowName, string iconName, float y, bool isBgm, string label)
     {
         GameObject row = new GameObject(rowName, typeof(RectTransform));
         row.transform.SetParent(_pausePanel.transform, false);
-        ((RectTransform)row.transform).anchoredPosition = new Vector2(0, y);
+        RectTransform rowRt = (RectTransform)row.transform;
+        rowRt.anchoredPosition = new Vector2(0, y);
+        rowRt.sizeDelta = new Vector2(560, 60);
 
         // 左边图标
         GameObject iconGo = new GameObject("Icon", typeof(RectTransform), typeof(Image));
         iconGo.transform.SetParent(row.transform, false);
         RectTransform irt = (RectTransform)iconGo.transform;
-        irt.anchoredPosition = new Vector2(-170, 0);
-        irt.sizeDelta = new Vector2(50f, 50f);
+        irt.anchoredPosition = new Vector2(-230, 0);
+        irt.sizeDelta = new Vector2(64f, 64f);
         Image iconImg = iconGo.GetComponent<Image>();
         iconImg.color = Color.white;
         ApplySprite(iconImg, iconName);
 
-        Button minusBtn = CreateSmallButton(row.transform, "Minus", "-", new Vector2(-70, 0));
-        minusBtn.onClick.AddListener(() => { minus(); RefreshVolumeLabels(); });
-
-        valueText = CreateLabel(row.transform, "8", new Vector2(0, 0), 60, 40);
-        valueText.gameObject.name = "Value";
-
-        Button plusBtn = CreateSmallButton(row.transform, "Plus", "+", new Vector2(70, 0));
-        plusBtn.onClick.AddListener(() => { plus(); RefreshVolumeLabels(); });
+        BuildVolumeSlider(row.transform, isBgm, label);
+        return row.transform;
     }
 
-    // 生成纯文字标签
-    private Text CreateLabel(Transform parent, string content, Vector2 pos, float w, float h)
+    // 在一行内生成文字标注 + 滑动条本体（背景/填充/手柄）
+    private Slider BuildVolumeSlider(Transform row, bool isBgm, string label)
     {
-        GameObject go = new GameObject("Label", typeof(RectTransform), typeof(Text));
-        go.transform.SetParent(parent, false);
-        RectTransform rt = (RectTransform)go.transform;
-        rt.anchoredPosition = pos;
-        rt.sizeDelta = new Vector2(w, h);
+        // 文字标注：背景音乐 / 音效
+        GameObject labelGo = new GameObject("Label", typeof(RectTransform), typeof(Text));
+        labelGo.transform.SetParent(row, false);
+        RectTransform lrt = (RectTransform)labelGo.transform;
+        lrt.anchoredPosition = new Vector2(-120, 0);
+        lrt.sizeDelta = new Vector2(130f, 44f);
+        Text labelText = labelGo.GetComponent<Text>();
+        labelText.text = label;
+        labelText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        labelText.fontSize = 26;
+        labelText.alignment = TextAnchor.MiddleLeft;
+        labelText.color = Color.white;
 
-        Text t = go.GetComponent<Text>();
-        t.text = content;
-        t.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        t.fontSize = 28;
-        t.alignment = TextAnchor.MiddleCenter;
-        t.color = Color.white;
-        return t;
+        // 滑动条
+        GameObject sliderGo = new GameObject("Slider", typeof(RectTransform), typeof(Slider));
+        sliderGo.transform.SetParent(row, false);
+        RectTransform srt = (RectTransform)sliderGo.transform;
+        srt.anchoredPosition = new Vector2(40, 0);
+        srt.sizeDelta = new Vector2(volumeSliderWidth, 44f);
+
+        // 轨道背景
+        GameObject bgGo = new GameObject("Background", typeof(RectTransform), typeof(Image));
+        bgGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform bgRt = (RectTransform)bgGo.transform;
+        bgRt.anchorMin = new Vector2(0, 0.25f);
+        bgRt.anchorMax = new Vector2(1, 0.75f);
+        bgRt.offsetMin = Vector2.zero;
+        bgRt.offsetMax = Vector2.zero;
+        Image bgImg = bgGo.GetComponent<Image>();
+        bgImg.color = new Color(0.2f, 0.3f, 0.45f, 1f);
+
+        // 填充
+        GameObject fillGo = new GameObject("Fill", typeof(RectTransform), typeof(Image));
+        fillGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform fillRt = (RectTransform)fillGo.transform;
+        fillRt.anchorMin = new Vector2(0, 0);
+        fillRt.anchorMax = new Vector2(1, 1);
+        fillRt.offsetMin = new Vector2(6, 0);
+        fillRt.offsetMax = new Vector2(-6, 0);
+        Image fillImg = fillGo.GetComponent<Image>();
+        fillImg.color = new Color(0.2f, 0.7f, 1f, 1f);
+
+        // 手柄
+        GameObject handleGo = new GameObject("Handle", typeof(RectTransform), typeof(Image));
+        handleGo.transform.SetParent(sliderGo.transform, false);
+        RectTransform hrt = (RectTransform)handleGo.transform;
+        hrt.sizeDelta = new Vector2(40f, 40f);
+        Image handleImg = handleGo.GetComponent<Image>();
+        handleImg.color = Color.white;
+
+        Slider slider = sliderGo.GetComponent<Slider>();
+        slider.minValue = 0;
+        slider.maxValue = 10;
+        slider.wholeNumbers = true;
+        slider.targetGraphic = handleImg;
+        slider.fillRect = fillRt;
+        slider.handleRect = hrt;
+        slider.direction = Slider.Direction.LeftToRight;
+        WireSlider(slider, isBgm);
+        return slider;
     }
 
-    // 生成小方块按钮（- / +）
-    private Button CreateSmallButton(Transform parent, string name, string text, Vector2 pos)
+    // 给滑动条接上音量逻辑
+    private void WireSlider(Slider slider, bool isBgm)
     {
-        GameObject go = new GameObject(name, typeof(RectTransform), typeof(Image), typeof(Button));
-        go.transform.SetParent(parent, false);
-        RectTransform rt = (RectTransform)go.transform;
-        rt.anchoredPosition = pos;
-        rt.sizeDelta = new Vector2(55f, 45f);
-
-        Image img = go.GetComponent<Image>();
-        img.color = new Color(0.2f, 0.5f, 0.8f, 1f);
-
-        Text t = CreateLabel(go.transform, text, Vector2.zero, 55, 45);
-        t.fontSize = 28;
-
-        return go.GetComponent<Button>();
-    }
-
-    // 给菜单生成的 Minus / Plus 按钮补文字和事件
-    private void WireExistingVolumeRow(Transform row, bool isBgm)
-    {
-        Button minus = row.Find("Minus")?.GetComponent<Button>();
-        Button plus = row.Find("Plus")?.GetComponent<Button>();
-
-        if (minus != null)
+        slider.onValueChanged.RemoveAllListeners();
+        slider.onValueChanged.AddListener(v =>
         {
-            EnsureButtonText(minus, "-");
-            minus.onClick.RemoveAllListeners();
-            minus.onClick.AddListener(() =>
-            {
-                if (isBgm) AudioManager.Instance?.BgmDown();
-                else AudioManager.Instance?.SfxDown();
-                RefreshVolumeLabels();
-            });
-        }
-
-        if (plus != null)
-        {
-            EnsureButtonText(plus, "+");
-            plus.onClick.RemoveAllListeners();
-            plus.onClick.AddListener(() =>
-            {
-                if (isBgm) AudioManager.Instance?.BgmUp();
-                else AudioManager.Instance?.SfxUp();
-                RefreshVolumeLabels();
-            });
-        }
+            if (AudioManager.Instance == null) return;
+            if (isBgm) AudioManager.Instance.SetBgmVolume(Mathf.RoundToInt(v));
+            else AudioManager.Instance.SetSfxVolume(Mathf.RoundToInt(v));
+        });
     }
 
-    private void EnsureButtonText(Button btn, string content)
-    {
-        Text t = btn.GetComponentInChildren<Text>();
-        if (t == null)
-        {
-            GameObject go = new GameObject("Text", typeof(RectTransform), typeof(Text));
-            go.transform.SetParent(btn.transform, false);
-            RectTransform rt = (RectTransform)go.transform;
-            rt.anchorMin = Vector2.zero;
-            rt.anchorMax = Vector2.one;
-            rt.offsetMin = Vector2.zero;
-            rt.offsetMax = Vector2.zero;
-            t = go.GetComponent<Text>();
-        }
-        t.text = content;
-        t.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        t.fontSize = 28;
-        t.alignment = TextAnchor.MiddleCenter;
-        t.color = Color.white;
-
-        Image img = btn.GetComponent<Image>();
-        if (img != null && img.sprite == null)
-            img.color = new Color(0.2f, 0.5f, 0.8f, 1f);
-    }
-
-    // 点音量按钮后刷新数字显示
-    private void RefreshVolumeLabels()
+    // 打开暂停面板时把滑条位置刷成当前音量
+    private void RefreshSliders()
     {
         if (AudioManager.Instance == null) return;
-        if (_bgmValueText != null) _bgmValueText.text = AudioManager.Instance.GetBgmText();
-        if (_sfxValueText != null) _sfxValueText.text = AudioManager.Instance.GetSfxText();
+        if (_bgmSlider != null) _bgmSlider.value = AudioManager.Instance.GetBgmVolume01() * 10f;
+        if (_sfxSlider != null) _sfxSlider.value = AudioManager.Instance.GetSfxVolume01() * 10f;
     }
 
     // 找或创建右上角暂停按钮
@@ -351,8 +345,9 @@ public class PauseManager : MonoBehaviour
         else
         {
             ApplySprite(btn.GetComponent<Image>(), spriteName);
-            ((RectTransform)btn.transform).sizeDelta =
-                buttonName == "ResumeButton" ? resumeButtonSize : quitButtonSize;
+            RectTransform rt = (RectTransform)btn.transform;
+            rt.sizeDelta = buttonName == "ResumeButton" ? resumeButtonSize : quitButtonSize;
+            rt.localScale = Vector3.one;
         }
         return btn;
     }
@@ -459,9 +454,10 @@ public class PauseManager : MonoBehaviour
 
         _paused = !_paused;
         if (_pausePanel != null)
+        {
             _pausePanel.SetActive(_paused);
-
-        if (_paused) RefreshVolumeLabels();
+            if (_paused) RefreshSliders();
+        }
 
         Time.timeScale = _paused ? 0f : 1f;
     }
